@@ -1,8 +1,6 @@
 Rails.application.routes.draw do
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   root 'home#index'
-  match ':controller/:action/(:id)', via: [:get, :post]
-  match ':controller/:action/(:id)', via: [:get, :post]
 
 	%w[index
 	conference_venue
@@ -22,7 +20,13 @@ Rails.application.routes.draw do
 	award_britton
 	award_duane
 	manuscript
-	imprint].each do |a|
+	imprint
+	abstract_success
+	manuscript_sucess].each do |a|
 		get a.to_s, to: "home##{a}"
+	end
+	['abstract',
+	'manuscript_process'].each do |a|
+		post a.to_s, to: "home##{a}"
 	end
 end

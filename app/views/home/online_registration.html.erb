@@ -1,3 +1,5 @@
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+
 <article class="post-167 page type-page status-publish hentry" id="post-167">
 
 		<time datetime="2017-02-22"></time>
@@ -5,55 +7,141 @@
 
 				<section class="entry">
 			
-			<h3><span style="color: #ff0000"><b>The ISOTT 2017 meeting is over and the online registration has been closed.</b></span></h3>
-<p>Conference fee:</p>
+
+<style>
+input{
+	border:1px solid black;
+}
+</style>
+<form  id="paypal_form"target="paypal" action="https://www.paypal.com/cgi-bin/webscr" method="post">
+<input type="hidden" name="cmd" value="_s-xclick">
+<input type="hidden" name="hosted_button_id" value="EJ4UNQKDE3H9C">
+
+<table>
+<tr><td><label>1. Name</label>
+<input style=" width:120px;display:inline; margin-right:10px;" name="first_name"> <input style=" width:150px;display:inline;" name="last_name">
+<div style="position:relative; height:20px;">
+	<div id="first_name" style="position:absolute; font-size:10px;top:0px; left:50px;">
+		First
+	</div>
+	<div id="last_name" style="position:absolute;  font-size:10px; top:0px; left:190px;">
+		Last
+	</div>
+</div></td></tr>
+
+<tr><td><label>2. Institution or Organization</label>
+<input id="institution" name="institution"></td></tr>
+<tr><td><label>3. Email address</label>
+<input id="email" name="email" type="email"></td></tr>
+<tr><td><label>4. Country</label>
+<input id="country" name="country"></td></tr>
+<tr><td><label>5. Presentation type</label>
+<select id="presentation_type" name="presentation_type">
+  <option value="oral_presentation">Oral presentation
+  </option>
+  <option value="poster_presentation">Poster presentation
+  </option>
+  <option value="attendance_only">Attendance only
+  </option>
+</select></td></tr>
+<tr><td><input type="hidden" name="on0" value="ISOTT - Registration">6. Conference fee</td></tr><tr><td><select name="os0">
+ <option value="early : ISOTT member">ISOTT member $450.00 USD (early)</option>
+ <option value="late : ISOTT member">ISOTT member $500.00 USD (late)</option>
+ <option value="early : non-member">non-member $550.00 USD (early)</option>
+ <option value="late : non-member">non-member $650.00 USD (late)</option>
+ <option value="early : accompanying person">accompanying person $200.00 USD (early)</option>
+ <option value="late : accompanying person">accompanying person $250.00 USD (late)</option>
+ <option value="early : student">student $150.00 USD (early)</option>
+ <option value="late : student">student $200.00 USD (late)</option>
+</select> </td></tr>
+</table>
+<input type="hidden" name="currency_code" value="USD">
+<input type="hidden" id="custom" name="custom">
+<button type="button" style="width:200px; height:50px; background-color:#a3d044; border-radius:10px;" id="submit_btn" value="Paypal submit" border="0"  alt="PayPal - The safer, easier way to pay online!">Paypal submit</button>
+<img alt="" border="0" src="https://www.paypalobjects.com/ko_KR/i/scr/pixel.gif" width="1" height="1">
+</form>
+
+<script>
+$(document).ready(function(){
+	$("#submit_btn").click(function(){
+		first_name = $("#first_name").val()
+		last_name = $("#last_name").val()
+		institution = $("#institution").val()
+		email = $("email").val()
+		country = $("#country").val()
+		presentation_type = $("#presentation_type").val()
+		//if (first_name && last_name && institution && email && country && presentation_type) {
+		custom = first_name + "\t" + last_name + "\t" + institution + "\t" + email + "\t" + country + "\t" + presentation_type
+		$("#custom").val(custom)
+		if ($("#custom").val() != ""){
+			$("#paypal_form").submit();
+		}
+	});
+	
+});
+</script>
+
+<hr>
+		<h1 class="the_title">Bank Transfer Registration</h1>
+<p>
+1. Swift code: NACF KRSE XXX<br>
+2. Bank name: Nonghyup bank<br>
+3. Bank address: 109 dong, Seoul National University, 1 Gwanak-ro,
+                             Gwanak-gu, Seoul, Korea<br>
+4. Account name: Ryu, Pan Dong<br>
+5. Account number: 302-1222-9421-11<br>
+
+</p>
+
+
+<p style="font-size:15px">Conference fee:</p>
 <table border="1" rules="all">
 <tbody>
 <tr>
 <td width="256"></td>
 <td width="256">
-<p style="text-align: center">Early registration<br>
+<p style="font-size:15px; text-align: center">Early registration<br>
 (before May 1<sup>st</sup>, 2018)</p>
 </td>
 <td width="256">
-<p style="text-align: center">Late registration<br>
+<p style="font-size:15px; text-align: center">Late registration<br>
 (after April 30<sup>th</sup>, 2018)</p>
 </td>
 </tr>
 <tr>
-<td width="256">ISOTT member</td>
+<td width="256" style="font-size:15px">ISOTT member</td>
 <td width="256">
-<p style="text-align: center">$450</p>
+<p style="font-size:15px; text-align: center">$450</p>
 </td>
 <td width="256">
-<p style="text-align: center">$500</p>
-</td>
-</tr>
-<tr>
-<td width="256">Non-member (*)</td>
-<td width="256">
-<p style="text-align: center">$550</p>
-</td>
-<td width="256">
-<p style="text-align: center">$650</p>
+<p style=" font-size:15px;text-align: center">$500</p>
 </td>
 </tr>
 <tr>
-<td width="256">Accompanying person</td>
+<td width="256" style="font-size:15px">Non-member (*)</td>
 <td width="256">
-<p style="text-align: center">200</p>
+<p style="font-size:15px;text-align: center">$550</p>
 </td>
 <td width="256">
-<p style="text-align: center">250</p>
+<p style="font-size:15px;text-align: center">$650</p>
 </td>
 </tr>
 <tr>
-<td width="256">Student</td>
+<td width="256" style="font-size:15px">Accompanying person</td>
 <td width="256">
-<p style="text-align: center">150</p>
+<p style="font-size:15px;text-align: center">$200</p>
 </td>
 <td width="256">
-<p style="text-align: center">200</p>
+<p style="font-size:15px;text-align: center">$250</p>
+</td>
+</tr>
+<tr>
+<td width="256" style="font-size:15px">Student</td>
+<td width="256">
+<p style="font-size:15px;text-align: center">$150</p>
+</td>
+<td width="256">
+<p style="font-size:15px; text-align: center">$200</p>
 </td>
 </tr>
 </tbody>

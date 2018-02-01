@@ -14,14 +14,14 @@
 <p>Please send your manuscript (together with the copyright form, a title page with the name and address of the corresponding author and a list of keywords) to <a href="mailto:isott2017@medizin.uni-halle.de">isott2017@medizin.uni-halle.de</a> .</p>
 <p>Documents and resources for Authors (click the links to download):</p>
 <ol>
-<li><a href="https://isott2017.org/files/2017/02/ISOTT_Consent_to_Publish.doc">Consent to Publish form</a> (MS Word file)</li>
-<li><a href="http://webted.uni-halle.de/ISOTT2017/T1-book.dot">T1-book template</a> (MS Word template)</li>
-<li><a href="https://isott2017.org/files/2017/06/Simplified-Instructions-for-ISOTT-Authors-2017.doc">Instructions for ISOTT Authors 2017</a> (MS Word file)</li>
+<li><a href="/ISOTT_Consent_to_Publish.doc">Consent to Publish form</a> (MS Word file)</li>
+<li><a href="/T1-book.dot">T1-book template</a> (MS Word template)</li>
+<li><a href="/simplified_instructions_for_ISOTT_authors.doc">Instructions for ISOTT Authors 2017</a> (MS Word file)</li>
 </ol>
 <p>More guidelines from the publisher (for those who want more details):</p>
 <ul>
-<li><a href="https://isott2017.org/files/2017/02/manuscript-guidelines-1.0.pdf">Further guidelines from the publisher on the manuscript</a> (pdf file)</li>
-<li><a href="https://isott2017.org/files/2017/02/readme-T1-book.pdf">Instructions on the T1-book template from the publisher</a> (pdf file)</li>
+<li><a href="/manuscript-guidelines-1.0.pdf">Further guidelines from the publisher on the manuscript</a> (pdf file)</li>
+<li><a href="/readme-T1-book.pdf">Instructions on the T1-book template from the publisher</a> (pdf file)</li>
 <li>Instructions to authors website link: <a href="http://www.springer.com/authors/book+authors?SGWID=0-154102-12-417900-0" target="_blank" rel="noopener noreferrer">http://www.springer.com/authors/book+authors?SGWID=0-154102-12-417900-0</a></li>
 </ul>
 			
@@ -31,6 +31,33 @@
 	    	<p></p>
 	</section>
 				<section id="comments">
+<div style="padding:20px; border:1px solid black;">
+<%= form_tag({:action => "manuscript_process"}, :multipart => true) do %>
+	<label> First author - first name</label>
+	<input name="first_author_first_name">
+	<br>
+	<label> First author - last name</label>
+	<input name="first_author_last_name">
+	<br>
+	<label> First author - email address</label>
+	<input type="email" name="first_author_email">
+	<br>
+	<label> Corresponding author - first name</label>
+	<input name="corresponding_author_first_name">
+	<br>
+	<label> Corresponding author - last name</label>
+	<input name="corresponding_author_last_name">
+	<br>
+	<label> Corresponding author - email address</label>
+	<input type="email" name="corresponding_author_email_name">
+	<br>
+	<label> Select abstract file</label>
+	<%= file_field 'upload', 'file'%>
+	<br>
+	<%= submit_tag "Upload"%>
+	</form>
+<%end%>
+</div>
 			        </section>
         
 	</article>

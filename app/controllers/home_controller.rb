@@ -1,6 +1,68 @@
 class HomeController < ApplicationController
 	def index
+		render layout: 'post'
 	end
+	
+	def abstract
+	  file = params[:upload]['abstract_file']
+	  name = file.original_filename
+          first_author_first_name = params[:first_author_first_name]
+	  first_author_last_name = params[:first_author_last_name]
+	  first_author_email = params[:first_author_email]
+	  corresponding_author_first_name = params[:corresponding_author_first_name]
+	  corresponding_author_last_name = params[:corresponding_author_last_name]
+	  corresponding_author_email = params[:corresponding_author_email]
+	  dir = 'public/abstract'
+	  file_name = first_author_first_name + '_' + first_author_last_name + '_(' + corresponding_author_first_name + "_" + corresponding_author_last_name + ")_" + name
+
+   	  a = Abstract.new
+	  a.first_author_first_name = first_author_first_name
+	  a.first_author_last_name = first_author_last_name
+ 	  a.first_author_email = first_author_email
+	  a.corresponding_author_first_name = corresponding_author_first_name
+	  a.corresponding_author_last_name = corresponding_author_last_name
+	  a.corresponding_author_email = corresponding_author_email
+	  a.filename = file_name
+	  a.save
+
+	  path = Rails.root.join(dir,file_name)
+	  File.open(path, "wb") { |f| f.write(file.read)}
+	  redirect_to '/home/abstract_success'
+	end
+	def abstract_success
+		render layout: 'post'
+	end
+
+	def manuscript_process
+	  file = params[:upload]['file']
+	  name = file.original_filename
+          first_author_first_name = params[:first_author_first_name]
+	  first_author_last_name = params[:first_author_last_name]
+	  first_author_email = params[:first_author_email]
+	  corresponding_author_first_name = params[:corresponding_author_first_name]
+	  corresponding_author_last_name = params[:corresponding_author_last_name]
+	  corresponding_author_email = params[:corresponding_author_email]
+	  dir = 'public/manuscript'
+	  file_name = first_author_first_name + '_' + first_author_last_name + '_(' + corresponding_author_first_name + "_" + corresponding_author_last_name + ")_" + name
+
+   	  a = Manuscript.new
+	  a.first_author_first_name = first_author_first_name
+	  a.first_author_last_name = first_author_last_name
+ 	  a.first_author_email = first_author_email
+	  a.corresponding_author_first_name = corresponding_author_first_name
+	  a.corresponding_author_last_name = corresponding_author_last_name
+	  a.corresponding_author_email = corresponding_author_email
+	  a.filename = file_name
+	  a.save
+
+	  path = Rails.root.join(dir,file_name)
+	  File.open(path, "wb") { |f| f.write(file.read)}
+	  redirect_to '/home/manuscript_success'
+	end
+	def manuscript_success
+		render layout: 'post'
+	end
+
 	
 	def conference_venue
 		render layout: 'post'
