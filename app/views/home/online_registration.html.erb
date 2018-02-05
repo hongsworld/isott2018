@@ -9,22 +9,38 @@
 			
 
 <style>
+select{
+	border:1px solid black;
+}
 input{
 	border:1px solid black;
 }
+
+table{
+	font-size:17px;
+}
+td{
+	padding:0px;
+}
+td p {
+  margin: 5px;
+}
 </style>
+
+
+
 <form  id="paypal_form"target="paypal" action="https://www.paypal.com/cgi-bin/webscr" method="post">
 <input type="hidden" name="cmd" value="_s-xclick">
 <input type="hidden" name="hosted_button_id" value="EJ4UNQKDE3H9C">
 
-<table>
+<table >
 <tr><td><label>1. Name</label>
-<input style=" width:120px;display:inline; margin-right:10px;" name="first_name"> <input style=" width:150px;display:inline;" name="last_name">
+<input id="first_name"style=" width:120px;display:inline; margin-right:10px;" name="first_name"> <input id="last_name" style=" width:150px;display:inline;" name="last_name">
 <div style="position:relative; height:20px;">
-	<div id="first_name" style="position:absolute; font-size:10px;top:0px; left:50px;">
+	<div  style="position:absolute; font-size:10px;top:0px; left:50px;">
 		First
 	</div>
-	<div id="last_name" style="position:absolute;  font-size:10px; top:0px; left:190px;">
+	<div  style="position:absolute;  font-size:10px; top:0px; left:190px;">
 		Last
 	</div>
 </div></td></tr>
@@ -44,7 +60,8 @@ input{
   <option value="attendance_only">Attendance only
   </option>
 </select></td></tr>
-<tr><td><input type="hidden" name="on0" value="ISOTT - Registration">6. Conference fee</td></tr><tr><td><select name="os0">
+<tr><td><input type="hidden" name="on0" value="ISOTT - Registration">6. Conference fee</td></tr><tr><td><select name="os0" id="pay_type" >
+
  <option value="early : ISOTT member">ISOTT member $450.00 USD (early)</option>
  <option value="late : ISOTT member">ISOTT member $500.00 USD (late)</option>
  <option value="early : non-member">non-member $550.00 USD (early)</option>
@@ -67,12 +84,22 @@ $(document).ready(function(){
 		first_name = $("#first_name").val()
 		last_name = $("#last_name").val()
 		institution = $("#institution").val()
-		email = $("email").val()
+		email = $("#email").val()
 		country = $("#country").val()
 		presentation_type = $("#presentation_type").val()
-		//if (first_name && last_name && institution && email && country && presentation_type) {
-		custom = first_name + "\t" + last_name + "\t" + institution + "\t" + email + "\t" + country + "\t" + presentation_type
-		$("#custom").val(custom)
+		pay_type = $("#pay_type").val()
+		
+		custom = {}
+		custom.first_name = first_name
+		custom.last_name = last_name
+		custom.institution = institution
+		custom.email = email
+		custom.country = country
+		custom.presentation_type = presentation_type
+		custom.pay_type =  pay_type
+
+
+		$("#custom").val(JSON.stringify(custom))
 		if ($("#custom").val() != ""){
 			$("#paypal_form").submit();
 		}
@@ -100,48 +127,48 @@ $(document).ready(function(){
 <tr>
 <td width="256"></td>
 <td width="256">
-<p style="font-size:15px; text-align: center">Early registration<br>
+<p style="font-size:inherit; text-align: center">Early registration<br>
 (before May 1<sup>st</sup>, 2018)</p>
 </td>
 <td width="256">
-<p style="font-size:15px; text-align: center">Late registration<br>
+<p style="font-size:inherit; text-align: center">Late registration<br>
 (after April 30<sup>th</sup>, 2018)</p>
 </td>
 </tr>
 <tr>
-<td width="256" style="font-size:15px">ISOTT member</td>
+<td width="256" style="font-size:inherit">ISOTT member</td>
 <td width="256">
-<p style="font-size:15px; text-align: center">$450</p>
+<p style="font-size:inherit; text-align: center">$450</p>
 </td>
 <td width="256">
-<p style=" font-size:15px;text-align: center">$500</p>
-</td>
-</tr>
-<tr>
-<td width="256" style="font-size:15px">Non-member (*)</td>
-<td width="256">
-<p style="font-size:15px;text-align: center">$550</p>
-</td>
-<td width="256">
-<p style="font-size:15px;text-align: center">$650</p>
+<p style=" font-size:inherit;text-align: center">$500</p>
 </td>
 </tr>
 <tr>
-<td width="256" style="font-size:15px">Accompanying person</td>
+<td width="256" style="font-size:inherit">Non-member (*)</td>
 <td width="256">
-<p style="font-size:15px;text-align: center">$200</p>
+<p style="font-size:inherit;text-align: center">$550</p>
 </td>
 <td width="256">
-<p style="font-size:15px;text-align: center">$250</p>
+<p style="font-size:inherit;text-align: center">$650</p>
 </td>
 </tr>
 <tr>
-<td width="256" style="font-size:15px">Student</td>
+<td width="256" style="font-size:inherit">Accompanying person</td>
 <td width="256">
-<p style="font-size:15px;text-align: center">$150</p>
+<p style="font-size:inherit;text-align: center">$200</p>
 </td>
 <td width="256">
-<p style="font-size:15px; text-align: center">$200</p>
+<p style="font-size:inherit;text-align: center">$250</p>
+</td>
+</tr>
+<tr>
+<td width="256" style="font-size:inherit">Student</td>
+<td width="256">
+<p style="font-size:inherit;text-align: center">$150</p>
+</td>
+<td width="256">
+<p style="font-size:inherit; text-align: center">$200</p>
 </td>
 </tr>
 </tbody>
