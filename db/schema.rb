@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180201183242) do
+ActiveRecord::Schema.define(version: 20180204065343) do
 
   create_table "abstracts", force: :cascade do |t|
     t.string "first_author_first_name"
@@ -32,6 +32,12 @@ ActiveRecord::Schema.define(version: 20180201183242) do
     t.string "corresponding_author_last_name"
     t.string "corresponding_author_email"
     t.string "filename"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "registrations", force: :cascade do |t|
+    t.text "content"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

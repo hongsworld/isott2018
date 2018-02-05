@@ -11,6 +11,7 @@ Rails.application.routes.draw do
 	social_program
 	organizing_committees
 	online_registration
+	online_registration_sucess
 	abstract_preparation
 	accommodation
 	how_to_reach
@@ -22,11 +23,13 @@ Rails.application.routes.draw do
 	manuscript
 	imprint
 	abstract_success
-	manuscript_sucess].each do |a|
+	manuscript_sucess
+	paypal_ipn].each do |a|
 		get a.to_s, to: "home##{a}"
 	end
 	['abstract',
-	'manuscript_process'].each do |a|
+	'manuscript_process',
+	'paypal_ipn'].each do |a|
 		post a.to_s, to: "home##{a}"
 	end
 end
