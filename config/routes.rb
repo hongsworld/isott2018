@@ -24,12 +24,14 @@ Rails.application.routes.draw do
 	imprint
 	abstract_success
 	manuscript_sucess
+	bank_registration_success
 	paypal_ipn].each do |a|
 		get a.to_s, to: "home##{a}"
 	end
 	['abstract',
 	'manuscript_process',
-	'paypal_ipn'].each do |a|
+	'paypal_ipn',
+	'bank_registration'].each do |a|
 		post a.to_s, to: "home##{a}"
 	end
 end

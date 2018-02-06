@@ -46,82 +46,16 @@ td p {
 </div></td></tr>
 
 <tr><td><label>2. Institution or Organization</label>
-<input id="institution" name="institution"></td></tr>
-<tr><td><label>3. Email address</label>
-<input id="email" name="email" type="email"></td></tr>
-<tr><td><label>4. Country</label>
-<input id="country" name="country"></td></tr>
-<tr><td><label>5. Presentation type</label>
-<select id="presentation_type" name="presentation_type">
-  <option value="oral_presentation">Oral presentation
-  </option>
-  <option value="poster_presentation">Poster presentation
-  </option>
-  <option value="attendance_only">Attendance only
-  </option>
-</select></td></tr>
-<tr><td><input type="hidden" name="on0" value="ISOTT - Registration">6. Conference fee</td></tr><tr><td><select name="os0" id="pay_type" >
-
- <option value="early : ISOTT member">ISOTT member $450.00 USD (early)</option>
- <option value="late : ISOTT member">ISOTT member $500.00 USD (late)</option>
- <option value="early : non-member">non-member $550.00 USD (early)</option>
- <option value="late : non-member">non-member $650.00 USD (late)</option>
- <option value="early : accompanying person">accompanying person $200.00 USD (early)</option>
- <option value="late : accompanying person">accompanying person $250.00 USD (late)</option>
- <option value="early : student">student $150.00 USD (early)</option>
- <option value="late : student">student $200.00 USD (late)</option>
-</select> </td></tr>
-</table>
-<input type="hidden" name="currency_code" value="USD">
-<input type="hidden" id="custom" name="custom">
-<button type="button" style="width:200px; height:50px; background-color:#a3d044; border-radius:10px;" id="submit_btn" value="Paypal submit" border="0"  alt="PayPal - The safer, easier way to pay online!">Paypal submit</button>
-<img alt="" border="0" src="https://www.paypalobjects.com/ko_KR/i/scr/pixel.gif" width="1" height="1">
-</form>
-
-<script>
-$(document).ready(function(){
-	$("#submit_btn").click(function(){
-		first_name = $("#first_name").val()
-		last_name = $("#last_name").val()
-		institution = $("#institution").val()
-		email = $("#email").val()
-		country = $("#country").val()
-		presentation_type = $("#presentation_type").val()
-		pay_type = $("#pay_type").val()
-		
-		custom = {}
-		custom.first_name = first_name
-		custom.last_name = last_name
-		custom.institution = institution
-		custom.email = email
-		custom.country = country
-		custom.presentation_type = presentation_type
-		custom.pay_type =  pay_type
-
-
-		$("#custom").val(JSON.stringify(custom))
-		if ($("#custom").val() != ""){
-			$("#paypal_form").submit();
-		}
-	});
-	
-});
-</script>
-
-<hr>
-		<h1 class="the_title">Bank Transfer Registration</h1>
-<p>
-1. Swift code: NACF KRSE XXX<br>
-2. Bank name: Nonghyup bank<br>
-3. Bank address: 109 dong, Seoul National University, 1 Gwanak-ro,
-                             Gwanak-gu, Seoul, Korea<br>
-4. Account name: Ryu, Pan Dong<br>
-5. Account number: 302-1222-9421-11<br>
-
-</p>
-
-
-<p style="font-size:15px">Conference fee:</p>
+<input id="institution" name="institution"><br></td></tr>
+<tr><td><label>3. Adress</label>
+<input id="address" name="address"><br></td></tr>
+<tr><td><label>4. Email address</label>
+<input id="email" name="email" type="email"><br></td></tr>
+<tr><td><label>5. Country</label>
+<input id="country" name="country"><br></td></tr>
+<tr><td><label>6. Conference fee</label>
+</td></tr>
+<tr><td>
 <table border="1" rules="all">
 <tbody>
 <tr>
@@ -163,7 +97,7 @@ $(document).ready(function(){
 </td>
 </tr>
 <tr>
-<td width="256" style="font-size:inherit">Student</td>
+<td width="256" style="font-size:inherit">Student (**)</td>
 <td width="256">
 <p style="font-size:inherit;text-align: center">$150</p>
 </td>
@@ -173,10 +107,127 @@ $(document).ready(function(){
 </tr>
 </tbody>
 </table>
-<p>&nbsp;</p>
 <p>The conference fee includes meeting participation, materials, coffee breaks, lunch and three social events.</p>
 <p>(*) If you apply for ISOTT membership before you register you will get the reduced ISOTT-member conference fee.</p>
+<p>(**) Please, submit a copy of your student ID card or equivalant certificate to the registration desk.</p>
+<br>
+</td></tr>
+<tr><td><input type="hidden" name="on0" value="ISOTT - Registration">7. My conference fee</td></tr><tr><td>
+<tr><td><select name="os0" id="pay_type" >
+
+ <option value="early : ISOTT member">ISOTT member $450.00 USD (early)</option>
+ <option value="late : ISOTT member">ISOTT member $500.00 USD (late)</option>
+ <option value="early : non-member">non-member $550.00 USD (early)</option>
+ <option value="late : non-member">non-member $650.00 USD (late)</option>
+ <option value="early : accompanying person">accompanying person $200.00 USD (early)</option>
+ <option value="late : accompanying person">accompanying person $250.00 USD (late)</option>
+ <option value="early : student">student $150.00 USD (early)</option>
+ <option value="late : student">student $200.00 USD (late)</option>
+</select> <br></td></tr>
+<tr><td><input type="hidden" name="pay_method" value="Payment methods">8. Payment methods</td></tr><tr><td><select name="pay_methods_select" id="pay_methods" >
+ <option value="0">Paypal</option>
+ <option value="1">Bank transfer</option>
+</select> </td></tr>
+</table>
+<input type="hidden" name="currency_code" value="USD">
+<input type="hidden" id="custom" name="custom">
+<button type="button" style="width:200px; height:50px; background-color:#a3d044; border-radius:10px;" id="submit_btn" value="Paypal submit" border="0"  alt="PayPal - The safer, easier way to pay online!">Push this button for payment</button>
+</form>
+
+<form  id="bank_form" action="/bank_registration" method="post">
+<input id="bank_first_name" name="first_name" type="hidden">
+<input id="bank_last_name" name ="last_name" type="hidden">
+<input id="bank_institution" name="institution" type="hidden">
+<input id="bank_address" name="address" type="hidden">
+<input id="bank_email" name="email" type="hidden">
+<input id="bank_country" name="country" type="hidden">
+<input id="bank_presentation_type" name="presentation_type" type="hidden">
+<input name="pay_type" id="bank_pay_type" type="hidden">
+</form>
+
+<script>
+$(document).ready(function(){
+	$("#submit_btn").click(function(){
+		first_name = $("#first_name").val()
+		last_name = $("#last_name").val()
+		institution = $("#institution").val()
+		email = $("#email").val()
+		country = $("#country").val()
+		presentation_type = $("#presentation_type").val()
+		pay_type = $("#pay_type").val()
+		address = $("#address").val()
+		
+		custom = {}
+		custom.first_name = first_name
+		custom.last_name = last_name
+		custom.institution = institution
+		custom.email = email
+		custom.country = country
+		custom.presentation_type = presentation_type
+		custom.pay_type =  pay_type
+		custom.address = address
+
+		if ($("#pay_methods").val() == "0"){	
+			$("#custom").val(JSON.stringify(custom))
+			if ($("#custom").val() != ""){
+				$("#paypal_form").submit();
+				$("#submit_btn").attr("disabled","disabled")
+			}
+		} else if ($("#pay_methods").val() == "1") {
+
+pay_type_arr = []
+pay_amount_arr = []
+pay_type_arr.push("early : ISOTT member")
+pay_amount_arr.push("ISOTT member $450.00 USD (early)")
+pay_type_arr.push("late : ISOTT member")
+pay_amount_arr.push("ISOTT member $500.00 USD (late)")
+pay_type_arr.push("early : non-member")
+pay_amount_arr.push("non-member $550.00 USD (early)")
+pay_type_arr.push("late : non-member")
+pay_amount_arr.push("non-member $650.00 USD (late)")
+pay_type_arr.push("early : accompanying person")
+pay_amount_arr.push("accompanying person $200.00 USD (early)")
+pay_type_arr.push("late : accompanying person")
+pay_amount_arr.push("accompanying person $250.00 USD (late)")
+pay_type_arr.push("early : student")
+pay_amount_arr.push("student $150.00 USD (early)")
+pay_type_arr.push("late : student")
+pay_amount_arr.push("student $200.00 USD (late)")
+
+
+			$("#bank_first_name").val(first_name)
+			$("#bank_last_name").val(last_name)
+			$("#bank_institution").val(institution)
+			$("#bank_email").val(email)
+			$("#bank_country").val(country)
+			$("#bank_presentation_type").val(presentation_type)
+			$("#bank_pay_type").val(pay_amount_arr[pay_type_arr.indexOf(pay_type)])
+			$("#bank_address").val(address)
+			$("#bank_form").submit();	
+			$("#submit_btn").attr("disabled","disabled")
+		}
+	});
+	
+});
+</script>
+
+<hr>
+
 <p>&nbsp;</p>
+<p>&nbsp;</p>
+
+		<h1 class="the_title">Bank Transfer Registration</h1>
+<p>
+1. Swift code: NACF KRSE XXX<br>
+2. Bank name: Nonghyup bank<br>
+3. Bank address: 109 dong, Seoul National University, 1 Gwanak-ro,
+                             Gwanak-gu, Seoul, Korea<br>
+4. Account name: Ryu, Pan Dong<br>
+5. Account number: 302-1222-9421-11<br>
+
+</p>
+
+
 			
 					</section>
 		

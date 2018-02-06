@@ -11,7 +11,7 @@ File: Layout CSS
 @import url("fontawesome-4.5.0.min.css");
 @import url("framework.css");
 #mainav ul li a{
-	color:#ccc;
+	color:#333;
 }
 /* Rows
 --------------------------------------------------------------------------------------------------------------- */
@@ -142,7 +142,7 @@ nav ul, nav ol{margin:0; padding:0; list-style:none;}
 
 /* Top Navigation */
 #mainav{}
-#mainav ul.clear{margin-top:60px !important;}
+#mainav ul.clear{margin-top:90px !important;}
 #mainav ul{text-transform:uppercase;}
 #mainav ul ul{z-index:9999; position:absolute; width:180px; text-transform:none;}
 #mainav ul ul ul{left:180px; top:0;}

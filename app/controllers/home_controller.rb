@@ -2,6 +2,49 @@ class HomeController < ApplicationController
 	def index
 		render layout: 'post'
 	end
+	def bank_registration
+		require 'gmail'
+		r = Registration.new
+		r.bank_transfer = true
+		r.first_name = params[:first_name]
+		r.last_name = params[:last_name]
+		r.institution = params[:institution]
+		r.email = params[:email]
+		r.country = params[:country]
+		r.presentation_type = params[:presentation_type]
+		r.pay_type = params[:pay_type]
+		r.address = params[:address]
+		r.save
+
+
+
+		gmail = Gmail.connect('isott2018', 'tjdnfeotndmleo')
+		gmail.deliver do 
+			to "isott2018@gmail.com"
+			subject "[bank transfer] #{r.first_name} #{r.last_name}'s registration was submmited"
+			text_part do 
+				body "<b>#{r.first_name} #{r.last_name}'s  registration was submited. Please find out below bank transfer information. </b> First_name: #{r.first_name}<br> Last name: #{r.last_name} <br> Institution: #{r.institution} <br> Country: #{r.country} <br> Presentation_type: #{r.presentation_type}<br> Registration: #{r.pay_type}"
+			end
+			html_part do 
+				body "<b>#{r.first_name} #{r.last_name}'s  registration was submited. Please find out below bank transfer information. </b> First_name: #{r.first_name}<br> Last name: #{r.last_name} <br> Institution: #{r.institution} <br> Country: #{r.country} <br> Presentation_type: #{r.presentation_type}<br> Registration: #{r.pay_type}"
+			end
+		end
+		logger.info(r.last_name)
+
+		gmail.deliver do 
+			to r.email
+			subject "Your bank transfer registration was submmited"
+			text_part do 
+				body "<b>Your bank transfer registration was submited. Please find out below bank transfer information. </b> <br>1. Swift code: NACF KRSE XXX<br> 2. Bank name: Nonghyup bank<br> 3. Bank address: 109 dong, Seoul National University, 1 Gwanak-ro, Gwanak-gu, Seoul, Korea<br> 4. Account name: Ryu, Pan Dong<br> 5. Account number: 302-1222-9421-11<br>  <br> First_name: #{r.first_name}<br> Last name: #{r.last_name} <br> Institution: #{r.institution} <br> Country: #{r.country} <br> Presentation_type: #{r.presentation_type}<br> Registration: #{r.pay_type}"
+			end
+			html_part do 
+				body "<b>Your bank transfer registration was submited. Please find out below bank transfer information. </b> <br>1. Swift code: NACF KRSE XXX<br> 2. Bank name: Nonghyup bank<br> 3. Bank address: 109 dong, Seoul National University, 1 Gwanak-ro, Gwanak-gu, Seoul, Korea<br> 4. Account name: Ryu, Pan Dong<br> 5. Account number: 302-1222-9421-11<br>  <br> First_name: #{r.first_name}<br> Last name: #{r.last_name} <br> Institution: #{r.institution} <br> Country: #{r.country} <br> Presentation_type: #{r.presentation_type}<br> Registration: #{r.pay_type}"
+			end
+		end
+		gmail.logout
+
+		redirect_to '/bank_registration_success'
+	end
 	def paypal_ipn
 		r = Registration.new
 		r.content = params.to_json
@@ -13,10 +56,20 @@ class HomeController < ApplicationController
 			to custom["email"]
 			subject "Your registration was successed"
 			text_part do 
-				body "Your registration was successed \nFirst_name: #{custom["first_name"]}\nLast name: #{custom["last_name"]} \nInstitution: #{custom["institution"]} \nCountry: #{custom["country"]} \nPresentation_type: #{custom["presentation_type"]}\n Registration: #{custom["pay_type"]}"
+				body "Your registration was successed <br>First_name: #{custom["first_name"]}<br>Last name: #{custom["last_name"]} <br>Institution: #{custom["institution"]} <br>Country: #{custom["country"]} <br>Presentation_type: #{custom["presentation_type"]}<br> Registration: #{custom["pay_type"]}"
 			end
 			html_part do 
-				body "Your registration was successed \nFirst_name: #{custom["first_name"]}\nLast name: #{custom["last_name"]} \nInstitution: #{custom["institution"]} \nCountry: #{custom["country"]} \nPresentation_type: #{custom["presentation_type"]}\n Registration: #{custom["pay_type"]}"
+				body "Your registration was successed <br>First_name: #{custom["first_name"]}<br>Last name: #{custom["last_name"]} <br>Institution: #{custom["institution"]} <br>Country: #{custom["country"]} <br>Presentation_type: #{custom["presentation_type"]}<br> Registration: #{custom["pay_type"]}"
+			end
+		end
+		gmail.deliver do 
+			to 'isott2018@gmail.com'
+			subject "[Paypal] #{custom["first_name"]} #{custom["last_name"]}'s registration was successed"
+			text_part do 
+				body "#{custom["first_name"]} #{custom["last_name"]}'s registration was successed <br>First_name: #{custom["first_name"]}<br>Last name: #{custom["last_name"]} <br>Institution: #{custom["institution"]} <br>Country: #{custom["country"]} <br>Presentation_type: #{custom["presentation_type"]}<br> Registration: #{custom["pay_type"]}"
+			end
+			html_part do 
+				body "#{custom["first_name"]} #{custom["last_name"]}'s registration was successed <br>First_name: #{custom["first_name"]}<br>Last name: #{custom["last_name"]} <br>Institution: #{custom["institution"]} <br>Country: #{custom["country"]} <br>Presentation_type: #{custom["presentation_type"]}<br> Registration: #{custom["pay_type"]}"
 			end
 		end
 		gmail.logout
@@ -68,10 +121,10 @@ class HomeController < ApplicationController
 			to [first_author_email, corresponding_author_email]
 			subject "Abstract of #{first_author_first_name} #{first_author_last_name} submitted"
 			text_part do 
-				body "Your abstract was successfully submitted. \n first_author: #{first_author_first_name + " " + first_author_last_name} \n corresponding_author : #{corresponding_author_first_name + " " + corresponding_author_last_name} \n check the uploaded abstract : http://isott2018.com/abstract/#{file_name}"
+				body "Your abstract was successfully submitted. <br> first_author: #{first_author_first_name + " " + first_author_last_name} <br> corresponding_author : #{corresponding_author_first_name + " " + corresponding_author_last_name} <br> check the uploaded abstract : http://isott2018.com/abstract/#{file_name}"
 			end
 			html_part do 
-				body "Your abstract was successfully submitted. \n first_author: #{first_author_first_name + " " + first_author_last_name} \n corresponding_author : #{corresponding_author_first_name + " " + corresponding_author_last_name} \n check the uploaded abstract : <a href='http://isott2018.com/abstract/#{file_name}'> Check abstract </a>"
+				body "Your abstract was successfully submitted. <br> first_author: #{first_author_first_name + " " + first_author_last_name} <br> corresponding_author : #{corresponding_author_first_name + " " + corresponding_author_last_name} <br> check the uploaded abstract : <a href='http://isott2018.com/abstract/#{file_name}'> Check abstract </a>"
 			end
 		end
 
@@ -128,10 +181,10 @@ class HomeController < ApplicationController
 			to [first_author_email, corresponding_author_email]
 			subject "Manuscript of #{first_author_first_name} #{first_author_last_name} submitted"
 			text_part do 
-				body "Your manuscript was successfully submitted. \n first_author: #{first_author_first_name + " " + first_author_last_name} \n corresponding_author : #{corresponding_author_first_name + " " + corresponding_author_last_name} \n check the uploaded manuscript : http://isott2018.com/manuscript/#{file_name}"
+				body "Your manuscript was successfully submitted. <br> first_author: #{first_author_first_name + " " + first_author_last_name} <br> corresponding_author : #{corresponding_author_first_name + " " + corresponding_author_last_name} <br> check the uploaded manuscript : http://isott2018.com/manuscript/#{file_name}"
 			end
 			html_part do 
-				body "Your manuscript was successfully submitted. \n first_author: #{first_author_first_name + " " + first_author_last_name} \n corresponding_author : #{corresponding_author_first_name + " " + corresponding_author_last_name} \n check the uploaded manuscript : <a href='http://isott2018.com/manuscript/#{file_name}'> Check manuscript </a>"
+				body "Your manuscript was successfully submitted. <br> first_author: #{first_author_first_name + " " + first_author_last_name} <br> corresponding_author : #{corresponding_author_first_name + " " + corresponding_author_last_name} <br> check the uploaded manuscript : <a href='http://isott2018.com/manuscript/#{file_name}'> Check manuscript </a>"
 			end
 		end
 
