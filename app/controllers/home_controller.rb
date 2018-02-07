@@ -20,7 +20,7 @@ class HomeController < ApplicationController
 
 		gmail = Gmail.connect('isott2018', 'tjdnfeotndmleo')
 		gmail.deliver do 
-			to "isott2018@gmail.com"
+			to "isott2018@snu.ac.kr"
 			subject "[bank transfer] #{r.first_name} #{r.last_name}'s registration was submmited"
 			text_part do 
 				body "<b>#{r.first_name} #{r.last_name}'s  registration was submited. Please find out below bank transfer information. </b> First_name: #{r.first_name}<br> Last name: #{r.last_name} <br> Institution: #{r.institution} <br> Country: #{r.country} <br> Presentation_type: #{r.presentation_type}<br> Registration: #{r.pay_type}"
@@ -63,7 +63,7 @@ class HomeController < ApplicationController
 			end
 		end
 		gmail.deliver do 
-			to 'isott2018@gmail.com'
+			to 'isott2018@snu.ac.kr'
 			subject "[Paypal] #{custom["first_name"]} #{custom["last_name"]}'s registration was successed"
 			text_part do 
 				body "#{custom["first_name"]} #{custom["last_name"]}'s registration was successed <br>First_name: #{custom["first_name"]}<br>Last name: #{custom["last_name"]} <br>Institution: #{custom["institution"]} <br>Country: #{custom["country"]} <br>Presentation_type: #{custom["presentation_type"]}<br> Registration: #{custom["pay_type"]}"
@@ -107,7 +107,7 @@ class HomeController < ApplicationController
 		require 'gmail'
 		gmail = Gmail.connect('isott2018', 'tjdnfeotndmleo')
 		gmail.deliver do 
-			to "isott2018@gmail.com"
+			to "isott2018@snu.ac.kr"
 			subject "Abstract of #{first_author_first_name} #{first_author_last_name} submitted"
 			text_part do 
 				body "http://isott2018.com/abstract/#{file_name}"
@@ -167,7 +167,7 @@ class HomeController < ApplicationController
 		require 'gmail'
 		gmail = Gmail.connect('isott2018', 'tjdnfeotndmleo')
 		gmail.deliver do 
-			to "isott2018@gmail.com"
+			to "isott2018@snu.ac.kr"
 			subject "Manuscript of #{first_author_first_name} #{first_author_last_name} submitted"
 			text_part do 
 				body "http://isott2018.com/manuscript/#{file_name}"
