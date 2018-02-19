@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180206083741) do
+ActiveRecord::Schema.define(version: 20180219111316) do
 
   create_table "abstracts", force: :cascade do |t|
     t.string "first_author_first_name"
@@ -49,6 +49,20 @@ ActiveRecord::Schema.define(version: 20180206083741) do
     t.string "presentation_type"
     t.string "pay_type"
     t.string "address"
+    t.string "institution1"
+    t.string "institution2"
+    t.string "institution3"
+    t.string "address1"
+    t.string "address2"
+    t.string "academic_title"
+    t.string "degree"
+    t.string "title"
+    t.string "city"
+    t.string "zip_code"
+    t.string "phone"
+    t.string "isott_member"
+    t.string "accompanying_person"
+    t.text "accompanying_info"
   end
 
 end

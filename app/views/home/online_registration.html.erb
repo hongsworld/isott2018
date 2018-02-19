@@ -32,28 +32,337 @@ td p {
 <form  id="paypal_form"target="paypal" action="https://www.paypal.com/cgi-bin/webscr" method="post">
 <input type="hidden" name="cmd" value="_s-xclick">
 <input type="hidden" name="hosted_button_id" value="EJ4UNQKDE3H9C">
-
+<style>
+td{
+padding:10px;
+padding-bottom:0px;
+}
+</style>
 <table >
-<tr><td><label>1. Name</label>
+<tr><td><label>Name</label>
 <input id="first_name"style=" width:120px;display:inline; margin-right:10px;" name="first_name"> <input id="last_name" style=" width:150px;display:inline;" name="last_name">
 <div style="position:relative; height:20px;">
-	<div  style="position:absolute; font-size:10px;top:0px; left:50px;">
-		First
+	<div  style="position:absolute; font-size:10px;top:0px; left:30px;">
+		First name
 	</div>
-	<div  style="position:absolute;  font-size:10px; top:0px; left:190px;">
-		Last
+	<div  style="position:absolute;  font-size:10px; top:0px; left:170px;">
+		Surname
 	</div>
 </div></td></tr>
 
-<tr><td><label>2. Institution or Organization</label>
-<input id="institution" name="institution"><br></td></tr>
-<tr><td><label>3. Adress</label>
-<input id="address" name="address"><br></td></tr>
-<tr><td><label>4. Email address</label>
+
+<tr><td><label> Title</label>
+<select name="title" id="title" >
+<% ["Mr", "Ms"].each do |x| %>
+<option value="<%=x%>"><%=x%></option>
+<%end%>
+</select>
+<br></td></tr>
+
+<tr><td><label>Academic title</label>
+<select name="academic_title" id="academic_title" >
+<% ["Professor", "Associate Professor", "Assistant Professor", "Research Associate", "Student", "Other"].each do |x| %>
+<option value="<%=x%>"><%=x%></option>
+<%end%>
+</select>
+<br></td></tr>
+
+<tr><td><label>Degree</label>
+<select name="degree" id="degree" >
+<% ["PhD", "MD", "DO", "DDS", "DVM", "MS", "Other"].each do |x| %>
+<option value="<%=x%>"><%=x%></option>
+<%end%>
+</select>
+<br></td></tr>
+
+<tr><td><label>Institution or Organization(line 1)</label>
+<input id="institution1" name="institution1" style="width:100%; max-width:600px;"><br></td></tr>
+<tr><td><label>Institution or Organization(line 2)</label>
+<input id="institution2" name="institution2" style="width:100%; max-width:600px;"><br></td></tr>
+<tr><td><label>Institution or Organization(line 3)</label>
+<input id="institution3" name="institution3"style="width:100%; max-width:600px;"><br></td></tr>
+<tr><td><label>Address / Street (line 1)</label>
+<input id="address1" name="address1" style="width:100%; max-width:600px;"><br></td></tr>
+<tr><td><label>Address / Street (line 2)</label>
+<input id="address2" name="address2"style="width:100%; max-width:600px;"><br></td></tr>
+<tr><td><label>City</label>
+<input id="city" name="city"><br></td></tr>
+<tr><td><label>Zip code</label>
+<input id="zip_code" name="zip_code"><br></td></tr>
+
+<tr><td><label>Country</label>
+<select id="country" name="country">
+	<option value="AF">Afghanistan</option>
+	<option value="AX">Åland Islands</option>
+	<option value="AL">Albania</option>
+	<option value="DZ">Algeria</option>
+	<option value="AS">American Samoa</option>
+	<option value="AD">Andorra</option>
+	<option value="AO">Angola</option>
+	<option value="AI">Anguilla</option>
+	<option value="AQ">Antarctica</option>
+	<option value="AG">Antigua and Barbuda</option>
+	<option value="AR">Argentina</option>
+	<option value="AM">Armenia</option>
+	<option value="AW">Aruba</option>
+	<option value="AU">Australia</option>
+	<option value="AT">Austria</option>
+	<option value="AZ">Azerbaijan</option>
+	<option value="BS">Bahamas</option>
+	<option value="BH">Bahrain</option>
+	<option value="BD">Bangladesh</option>
+	<option value="BB">Barbados</option>
+	<option value="BY">Belarus</option>
+	<option value="BE">Belgium</option>
+	<option value="BZ">Belize</option>
+	<option value="BJ">Benin</option>
+	<option value="BM">Bermuda</option>
+	<option value="BT">Bhutan</option>
+	<option value="BO">Bolivia, Plurinational State of</option>
+	<option value="BQ">Bonaire, Sint Eustatius and Saba</option>
+	<option value="BA">Bosnia and Herzegovina</option>
+	<option value="BW">Botswana</option>
+	<option value="BV">Bouvet Island</option>
+	<option value="BR">Brazil</option>
+	<option value="IO">British Indian Ocean Territory</option>
+	<option value="BN">Brunei Darussalam</option>
+	<option value="BG">Bulgaria</option>
+	<option value="BF">Burkina Faso</option>
+	<option value="BI">Burundi</option>
+	<option value="KH">Cambodia</option>
+	<option value="CM">Cameroon</option>
+	<option value="CA">Canada</option>
+	<option value="CV">Cape Verde</option>
+	<option value="KY">Cayman Islands</option>
+	<option value="CF">Central African Republic</option>
+	<option value="TD">Chad</option>
+	<option value="CL">Chile</option>
+	<option value="CN">China</option>
+	<option value="CX">Christmas Island</option>
+	<option value="CC">Cocos (Keeling) Islands</option>
+	<option value="CO">Colombia</option>
+	<option value="KM">Comoros</option>
+	<option value="CG">Congo</option>
+	<option value="CD">Congo, the Democratic Republic of the</option>
+	<option value="CK">Cook Islands</option>
+	<option value="CR">Costa Rica</option>
+	<option value="CI">Côte d'Ivoire</option>
+	<option value="HR">Croatia</option>
+	<option value="CU">Cuba</option>
+	<option value="CW">Curaçao</option>
+	<option value="CY">Cyprus</option>
+	<option value="CZ">Czech Republic</option>
+	<option value="DK">Denmark</option>
+	<option value="DJ">Djibouti</option>
+	<option value="DM">Dominica</option>
+	<option value="DO">Dominican Republic</option>
+	<option value="EC">Ecuador</option>
+	<option value="EG">Egypt</option>
+	<option value="SV">El Salvador</option>
+	<option value="GQ">Equatorial Guinea</option>
+	<option value="ER">Eritrea</option>
+	<option value="EE">Estonia</option>
+	<option value="ET">Ethiopia</option>
+	<option value="FK">Falkland Islands (Malvinas)</option>
+	<option value="FO">Faroe Islands</option>
+	<option value="FJ">Fiji</option>
+	<option value="FI">Finland</option>
+	<option value="FR">France</option>
+	<option value="GF">French Guiana</option>
+	<option value="PF">French Polynesia</option>
+	<option value="TF">French Southern Territories</option>
+	<option value="GA">Gabon</option>
+	<option value="GM">Gambia</option>
+	<option value="GE">Georgia</option>
+	<option value="DE">Germany</option>
+	<option value="GH">Ghana</option>
+	<option value="GI">Gibraltar</option>
+	<option value="GR">Greece</option>
+	<option value="GL">Greenland</option>
+	<option value="GD">Grenada</option>
+	<option value="GP">Guadeloupe</option>
+	<option value="GU">Guam</option>
+	<option value="GT">Guatemala</option>
+	<option value="GG">Guernsey</option>
+	<option value="GN">Guinea</option>
+	<option value="GW">Guinea-Bissau</option>
+	<option value="GY">Guyana</option>
+	<option value="HT">Haiti</option>
+	<option value="HM">Heard Island and McDonald Islands</option>
+	<option value="VA">Holy See (Vatican City State)</option>
+	<option value="HN">Honduras</option>
+	<option value="HK">Hong Kong</option>
+	<option value="HU">Hungary</option>
+	<option value="IS">Iceland</option>
+	<option value="IN">India</option>
+	<option value="ID">Indonesia</option>
+	<option value="IR">Iran, Islamic Republic of</option>
+	<option value="IQ">Iraq</option>
+	<option value="IE">Ireland</option>
+	<option value="IM">Isle of Man</option>
+	<option value="IL">Israel</option>
+	<option value="IT">Italy</option>
+	<option value="JM">Jamaica</option>
+	<option value="JP">Japan</option>
+	<option value="JE">Jersey</option>
+	<option value="JO">Jordan</option>
+	<option value="KZ">Kazakhstan</option>
+	<option value="KE">Kenya</option>
+	<option value="KI">Kiribati</option>
+	<option value="KP">Korea, Democratic People's Republic of</option>
+	<option value="KR">Korea, Republic of</option>
+	<option value="KW">Kuwait</option>
+	<option value="KG">Kyrgyzstan</option>
+	<option value="LA">Lao People's Democratic Republic</option>
+	<option value="LV">Latvia</option>
+	<option value="LB">Lebanon</option>
+	<option value="LS">Lesotho</option>
+	<option value="LR">Liberia</option>
+	<option value="LY">Libya</option>
+	<option value="LI">Liechtenstein</option>
+	<option value="LT">Lithuania</option>
+	<option value="LU">Luxembourg</option>
+	<option value="MO">Macao</option>
+	<option value="MK">Macedonia, the former Yugoslav Republic of</option>
+	<option value="MG">Madagascar</option>
+	<option value="MW">Malawi</option>
+	<option value="MY">Malaysia</option>
+	<option value="MV">Maldives</option>
+	<option value="ML">Mali</option>
+	<option value="MT">Malta</option>
+	<option value="MH">Marshall Islands</option>
+	<option value="MQ">Martinique</option>
+	<option value="MR">Mauritania</option>
+	<option value="MU">Mauritius</option>
+	<option value="YT">Mayotte</option>
+	<option value="MX">Mexico</option>
+	<option value="FM">Micronesia, Federated States of</option>
+	<option value="MD">Moldova, Republic of</option>
+	<option value="MC">Monaco</option>
+	<option value="MN">Mongolia</option>
+	<option value="ME">Montenegro</option>
+	<option value="MS">Montserrat</option>
+	<option value="MA">Morocco</option>
+	<option value="MZ">Mozambique</option>
+	<option value="MM">Myanmar</option>
+	<option value="NA">Namibia</option>
+	<option value="NR">Nauru</option>
+	<option value="NP">Nepal</option>
+	<option value="NL">Netherlands</option>
+	<option value="NC">New Caledonia</option>
+	<option value="NZ">New Zealand</option>
+	<option value="NI">Nicaragua</option>
+	<option value="NE">Niger</option>
+	<option value="NG">Nigeria</option>
+	<option value="NU">Niue</option>
+	<option value="NF">Norfolk Island</option>
+	<option value="MP">Northern Mariana Islands</option>
+	<option value="NO">Norway</option>
+	<option value="OM">Oman</option>
+	<option value="PK">Pakistan</option>
+	<option value="PW">Palau</option>
+	<option value="PS">Palestinian Territory, Occupied</option>
+	<option value="PA">Panama</option>
+	<option value="PG">Papua New Guinea</option>
+	<option value="PY">Paraguay</option>
+	<option value="PE">Peru</option>
+	<option value="PH">Philippines</option>
+	<option value="PN">Pitcairn</option>
+	<option value="PL">Poland</option>
+	<option value="PT">Portugal</option>
+	<option value="PR">Puerto Rico</option>
+	<option value="QA">Qatar</option>
+	<option value="RE">Réunion</option>
+	<option value="RO">Romania</option>
+	<option value="RU">Russian Federation</option>
+	<option value="RW">Rwanda</option>
+	<option value="BL">Saint Barthélemy</option>
+	<option value="SH">Saint Helena, Ascension and Tristan da Cunha</option>
+	<option value="KN">Saint Kitts and Nevis</option>
+	<option value="LC">Saint Lucia</option>
+	<option value="MF">Saint Martin (French part)</option>
+	<option value="PM">Saint Pierre and Miquelon</option>
+	<option value="VC">Saint Vincent and the Grenadines</option>
+	<option value="WS">Samoa</option>
+	<option value="SM">San Marino</option>
+	<option value="ST">Sao Tome and Principe</option>
+	<option value="SA">Saudi Arabia</option>
+	<option value="SN">Senegal</option>
+	<option value="RS">Serbia</option>
+	<option value="SC">Seychelles</option>
+	<option value="SL">Sierra Leone</option>
+	<option value="SG">Singapore</option>
+	<option value="SX">Sint Maarten (Dutch part)</option>
+	<option value="SK">Slovakia</option>
+	<option value="SI">Slovenia</option>
+	<option value="SB">Solomon Islands</option>
+	<option value="SO">Somalia</option>
+	<option value="ZA">South Africa</option>
+	<option value="GS">South Georgia and the South Sandwich Islands</option>
+	<option value="SS">South Sudan</option>
+	<option value="ES">Spain</option>
+	<option value="LK">Sri Lanka</option>
+	<option value="SD">Sudan</option>
+	<option value="SR">Suriname</option>
+	<option value="SJ">Svalbard and Jan Mayen</option>
+	<option value="SZ">Swaziland</option>
+	<option value="SE">Sweden</option>
+	<option value="CH">Switzerland</option>
+	<option value="SY">Syrian Arab Republic</option>
+	<option value="TW">Taiwan, Province of China</option>
+	<option value="TJ">Tajikistan</option>
+	<option value="TZ">Tanzania, United Republic of</option>
+	<option value="TH">Thailand</option>
+	<option value="TL">Timor-Leste</option>
+	<option value="TG">Togo</option>
+	<option value="TK">Tokelau</option>
+	<option value="TO">Tonga</option>
+	<option value="TT">Trinidad and Tobago</option>
+	<option value="TN">Tunisia</option>
+	<option value="TR">Turkey</option>
+	<option value="TM">Turkmenistan</option>
+	<option value="TC">Turks and Caicos Islands</option>
+	<option value="TV">Tuvalu</option>
+	<option value="UG">Uganda</option>
+	<option value="UA">Ukraine</option>
+	<option value="AE">United Arab Emirates</option>
+	<option value="GB">United Kingdom</option>
+	<option value="US">United States</option>
+	<option value="UM">United States Minor Outlying Islands</option>
+	<option value="UY">Uruguay</option>
+	<option value="UZ">Uzbekistan</option>
+	<option value="VU">Vanuatu</option>
+	<option value="VE">Venezuela, Bolivarian Republic of</option>
+	<option value="VN">Viet Nam</option>
+	<option value="VG">Virgin Islands, British</option>
+	<option value="VI">Virgin Islands, U.S.</option>
+	<option value="WF">Wallis and Futuna</option>
+	<option value="EH">Western Sahara</option>
+	<option value="YE">Yemen</option>
+	<option value="ZM">Zambia</option>
+	<option value="ZW">Zimbabwe</option>
+</select>
+
+<br></td></tr>
+<tr><td><label>Phone</label>
+<input id="phone" name="phone"><br></td></tr>
+<tr><td><label>Email address</label>
 <input id="email" name="email" type="email"><br></td></tr>
-<tr><td><label>5. Country</label>
-<input id="country" name="country"><br></td></tr>
-<tr><td><label>6. Conference fee</label>
+
+
+<tr><td><label>ISOTT Members</label><br>
+<input style="display:initial!important" type="radio" checked="checked" id="isott_member" value="ISOTT member" name="isott_member"><label style="display:initial !important" for="isott_member">ISOTT member</label><br><br>
+<input  style="display:initial!important" type="radio" id="non-isott_member" value="non-member"  name="isott_member"><label style="display:initial !important" for="non-isott_member">non-member <a href="http://isott.org/index.php/membership.html">( become a member here! )</a></label><br></td></tr>
+
+<tr><td><label>Accompanying person</label><br>
+<input style="display:initial!important" type="radio" checked="checked"id="no_accompanying_person" value="No, it's just me" name="accompanying_person"><label style="display:initial !important" for="no_accompanying_person">No, it's just me</label><br><br>
+<input  style="display:initial!important" type="radio" id="accompanying_person" value="Yes, I would like to bring somebody"  name="accompanying_person"><label style="display:initial !important" for="accompanying_person">Yes, I would like to bring somebody</label><br> 
+<div id="accompany_box">
+
+</div>
+<input style="display:none;" id="accompany_btn" type="button" value="Click button to add person">
+</td></tr>
+<tr><td><label>Conference fee</label>
 </td></tr>
 <tr><td>
 <table border="1" rules="all">
@@ -107,12 +416,12 @@ td p {
 </tr>
 </tbody>
 </table>
-<p>The conference fee includes meeting participation, materials, coffee breaks, lunch and three social events.</p>
+<p>The conference fee includes meeting participation, materials, coffee breaks, lunches, and dinners.</p>
 <p>(*) If you apply for ISOTT membership before you register you will get the reduced ISOTT-member conference fee.</p>
 <p>(**) Please, submit a copy of your student ID card or equivalant certificate to the registration desk.</p>
 <br>
 </td></tr>
-<tr><td><input type="hidden" name="on0" value="ISOTT - Registration">7. My conference fee</td></tr><tr><td>
+<tr><td><input type="hidden" name="on0" value="ISOTT - Registration">My conference fee</td></tr>
 <tr><td><select name="os0" id="pay_type" >
 
  <option value="early : ISOTT member">ISOTT member $450.00 USD (early)</option>
@@ -124,7 +433,7 @@ td p {
  <option value="early : student">student $150.00 USD (early)</option>
  <option value="late : student">student $200.00 USD (late)</option>
 </select> <br></td></tr>
-<tr><td><input type="hidden" name="pay_method" value="Payment methods">8. Payment methods</td></tr><tr><td><select name="pay_methods_select" id="pay_methods" >
+<tr><td><input type="hidden" name="pay_method" value="Payment methods">Payment methods</td></tr><tr><td><select name="pay_methods_select" id="pay_methods" >
  <option value="0">Paypal</option>
  <option value="1">Bank transfer</option>
 </select> </td></tr>
@@ -137,87 +446,168 @@ td p {
 <form  id="bank_form" action="/bank_registration" method="post">
 <input id="bank_first_name" name="first_name" type="hidden">
 <input id="bank_last_name" name ="last_name" type="hidden">
-<input id="bank_institution" name="institution" type="hidden">
-<input id="bank_address" name="address" type="hidden">
+<input id="bank_institution1" name="institution1" type="hidden">
+<input id="bank_institution2" name="institution2" type="hidden">
+<input id="bank_institution3" name="institution3" type="hidden">
+<input id="bank_address1" name="address1" type="hidden">
+<input id="bank_address2" name="address2" type="hidden">
 <input id="bank_email" name="email" type="hidden">
 <input id="bank_country" name="country" type="hidden">
 <input id="bank_presentation_type" name="presentation_type" type="hidden">
+
+<input id="bank_title" name="title" type="hidden">
+<input id="bank_academic_title" name="academic_title" type="hidden">
+<input id="bank_city" name="city" type="hidden">
+<input id="bank_zip_code" name="zip_code" type="hidden">
+<input id="bank_phone" name="phone" type="hidden">
+
+<input id="bank_isott_member" name="isott_member" type="hidden">
+<input id="bank_accompanying_person" name="accompanying_person" type="hidden">
+<input id="bank_accompanying_info" name="accompanying_person" type="hidden">
+
 <input name="pay_type" id="bank_pay_type" type="hidden">
 </form>
 
 <script>
 $(document).ready(function(){
+	accompanying_info = {}
 	$("#submit_btn").click(function(){
 		first_name = $("#first_name").val()
 		last_name = $("#last_name").val()
-		institution = $("#institution").val()
+		institution1 = $("#institution1").val()
+		institution2 = $("#institution2").val()
+		institution3 = $("#institution3").val()
 		email = $("#email").val()
 		country = $("#country").val()
 		presentation_type = $("#presentation_type").val()
 		pay_type = $("#pay_type").val()
-		address = $("#address").val()
+		address1 = $("#address1").val()
+		address2 = $("#address2").val()
+		title = $("#title").val();
+		academic_title = $("#academic_title").val();
+		degree = $("#degree").val();
+		city = $("#city").val();
+		zip_code = $("#zip_code").val();
+		phone = $("#phone").val();
+		isott_member = $("#isott_member").val();
+		accompanying_person = $("#accompanying_person").val();
+		for(var i = 0; i < accompany_count; i++) {
+
+			accompanying_info[i] = {}
+		}
+		$(".gender_title").each(function(e,i){
+			accompanying_info[e].gender_title = $(this).val();
+		});
+		$(".first_name").each(function(e,i){
+			accompanying_info[e].first_name = $(this).val();
+		});
+		$(".family_name").each(function(e,i){
+			accompanying_info[e].family_name = $(this).val();
+		});
+
 		
 		custom = {}
 		custom.first_name = first_name
 		custom.last_name = last_name
-		custom.institution = institution
+		custom.institution1 = institution1
+		custom.institution2 = institution2
+		custom.institution3 = institution3
 		custom.email = email
 		custom.country = country
 		custom.presentation_type = presentation_type
 		custom.pay_type =  pay_type
-		custom.address = address
+		custom.address1 = address1
+		custom.address2 = address2
+		custom.city = city
+		custom.zip_code = zip_code
+		custom.phone = phone
+		custom.isott_member = isott_member
+		custom.accompanying_person = accompanying_person
+		custom.title = title
+		custom.academic_title = academic_title
+		custom.degree = degree
+		custom.accompanying_info = accompanying_info
 
 		if ($("#pay_methods").val() == "0"){	
 			$("#custom").val(JSON.stringify(custom))
 			if ($("#custom").val() != ""){
-				$("#paypal_form").submit();
+				console.log(custom)
+				//$("#paypal_form").submit();
 				$("#submit_btn").attr("disabled","disabled")
 			}
 		} else if ($("#pay_methods").val() == "1") {
 
-pay_type_arr = []
-pay_amount_arr = []
-pay_type_arr.push("early : ISOTT member")
-pay_amount_arr.push("ISOTT member $450.00 USD (early)")
-pay_type_arr.push("late : ISOTT member")
-pay_amount_arr.push("ISOTT member $500.00 USD (late)")
-pay_type_arr.push("early : non-member")
-pay_amount_arr.push("non-member $550.00 USD (early)")
-pay_type_arr.push("late : non-member")
-pay_amount_arr.push("non-member $650.00 USD (late)")
-pay_type_arr.push("early : accompanying person")
-pay_amount_arr.push("accompanying person $200.00 USD (early)")
-pay_type_arr.push("late : accompanying person")
-pay_amount_arr.push("accompanying person $250.00 USD (late)")
-pay_type_arr.push("early : student")
-pay_amount_arr.push("student $150.00 USD (early)")
-pay_type_arr.push("late : student")
-pay_amount_arr.push("student $200.00 USD (late)")
+			pay_type_arr = []
+			pay_amount_arr = []
+			pay_type_arr.push("early : ISOTT member")
+			pay_amount_arr.push("ISOTT member $450.00 USD (early)")
+			pay_type_arr.push("late : ISOTT member")
+			pay_amount_arr.push("ISOTT member $500.00 USD (late)")
+			pay_type_arr.push("early : non-member")
+			pay_amount_arr.push("non-member $550.00 USD (early)")
+			pay_type_arr.push("late : non-member")
+			pay_amount_arr.push("non-member $650.00 USD (late)")
+			pay_type_arr.push("early : accompanying person")
+			pay_amount_arr.push("accompanying person $200.00 USD (early)")
+			pay_type_arr.push("late : accompanying person")
+			pay_amount_arr.push("accompanying person $250.00 USD (late)")
+			pay_type_arr.push("early : student")
+			pay_amount_arr.push("student $150.00 USD (early)")
+			pay_type_arr.push("late : student")
+			pay_amount_arr.push("student $200.00 USD (late)")
 
 
 			$("#bank_first_name").val(first_name)
 			$("#bank_last_name").val(last_name)
-			$("#bank_institution").val(institution)
+			$("#bank_institution1").val(institution1)
+			$("#bank_institution2").val(institution2)
+			$("#bank_institution3").val(institution3)
 			$("#bank_email").val(email)
 			$("#bank_country").val(country)
 			$("#bank_presentation_type").val(presentation_type)
 			$("#bank_pay_type").val(pay_amount_arr[pay_type_arr.indexOf(pay_type)])
-			$("#bank_address").val(address)
+			$("#bank_address1").val(address1)
+			$("#bank_address2").val(address2)
+			$("#bank_title").val(title)
+			$("#bank_academic_title").val(academic_title)
+			$("#bank_city").val(city)
+			$("#bank_zip_code").val(zip_code)
+			$("#bank_phone").val(phone)
+			$("#bank_isott_member").val(isott_member)
+			$("#bank_accompanying_person").val(accompanying_person)
+			$("#bank_accompanying_info").val(JSON.stringify(accompanying_info))
 			$("#bank_form").submit();	
 			$("#submit_btn").attr("disabled","disabled")
 		}
 	});
-	
+	var accompany_count = 0;
+	$("#accompanying_person").click(function(){
+		$("#accompany_btn").show()
+		accompany_count += 1
+		$("#accompany_box").append( "" +
+		"<tr style=' border-top: 1px solid black'><td style=' padding-bottom:10px;'>" +  
+		"Accompanying person " + accompany_count +"<br>" + 
+		"Gender title: <input class='gender_title'><br>" + 
+		"First name: <input class='first_name'><br>" + 
+		"Family name: <input class='family_name'>" + 
+		"</td></tr>" )
+	});
+	$("#accompany_btn").click(function(){
+		accompany_count += 1
+		$("#accompany_box").append( "" +
+		"<tr style='border-top: 1px solid black'><td style=' padding-bottom:10px;'>" +  
+		"Accompanying person " + accompany_count +"<br>" + 
+		"Gender title: <input class='gender_title'><br>" + 
+		"First name: <input class='first_name'><br>" + 
+		"Family name: <input class='family_name'>" + 
+		"</td></tr>" )
+	});
 });
 </script>
 
 <hr>
-
-<p>&nbsp;</p>
-<p>&nbsp;</p>
-
-		<h1 class="the_title">Account for Bank Transfer</h1>
-<p>
+		<h1 class="the_title">Account for Bank Transfer (Recommended for Korean participants)</h1>
+<p style="font-size:18px">
 1. Swift code: NACF KRSE XXX<br>
 2. Bank name: Nonghyup bank<br>
 3. Bank address: 109 dong, Seoul National University, 1 Gwanak-ro,
@@ -225,10 +615,8 @@ pay_amount_arr.push("student $200.00 USD (late)")
 4. Account name: Ryu, Pan Dong<br>
 5. Account number: 302-1222-9421-11<br>
 
-<pre>※ Please, indicate following information in the reference text on your transfer:
+<pre style="font-size:18px">※ Please, put your name in the reference text on your transfer
 
-    - ISOTT 2018
-    - name of the participant</pre>
 
 </p>
 

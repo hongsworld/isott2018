@@ -8,12 +8,26 @@ class HomeController < ApplicationController
 		r.bank_transfer = true
 		r.first_name = params[:first_name]
 		r.last_name = params[:last_name]
-		r.institution = params[:institution]
+		r.institution1 = params[:institution1]
+		r.institution2 = params[:institution2]
+		r.institution3 = params[:institution3]
+		r.institution = r.institution1 + "/" + r.institution2 + "/" + r.institution3
 		r.email = params[:email]
+		r.title = params[:title]
+		r.academic_title = params[:academic_title]
+		r.degree = params[:degree]
 		r.country = params[:country]
+		r.city = params[:city]
+		r.zip_code = params[:zip_code]
+		r.phone = params[:phone]
+		r.isott_member = params[:isott_member]
+		r.accompanying_person = params[:accompanying_person]
 		r.presentation_type = params[:presentation_type]
 		r.pay_type = params[:pay_type]
-		r.address = params[:address]
+		r.address1 = params[:address1]
+		r.address2 = params[:address2]
+		r.address = r.address1 + "/"  + r.address2
+		r.accompanying_info = params[:accompanying_info]
 		r.save
 
 
@@ -45,6 +59,9 @@ class HomeController < ApplicationController
 
 		redirect_to '/bank_registration_success'
 	end
+	def bank_registration_success
+		render layout: 'post'
+	end
 	def paypal_ipn
 		r = Registration.new
 		r.content = params.to_json
@@ -52,6 +69,8 @@ class HomeController < ApplicationController
 		require 'gmail'
 		gmail = Gmail.connect('isott2018', 'tjdnfeotndmleo')
 		custom = JSON.parse(JSON.parse(Registration.last.content)["custom"])
+		custom["institution"] = custom["institution1"] + "/" +custom["institution2"] + "/" +custom["institution3"]
+		
 		gmail.deliver do 
 			to custom["email"]
 			subject "Your registration was successed"
