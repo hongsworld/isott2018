@@ -36,6 +36,7 @@ td p {
 td{
 padding:10px;
 padding-bottom:0px;
+padding-top:0px;
 }
 </style>
 <table >
@@ -75,12 +76,10 @@ padding-bottom:0px;
 </select>
 <br></td></tr>
 
-<tr><td><label>Institution or Organization(line 1)</label>
+<tr><td><label>Institution or Organization (line 1)</label>
 <input id="institution1" name="institution1" style="width:100%; max-width:600px;"><br></td></tr>
-<tr><td><label>Institution or Organization(line 2)</label>
+<tr><td><label>Institution or Organization (line 2)</label>
 <input id="institution2" name="institution2" style="width:100%; max-width:600px;"><br></td></tr>
-<tr><td><label>Institution or Organization(line 3)</label>
-<input id="institution3" name="institution3"style="width:100%; max-width:600px;"><br></td></tr>
 <tr><td><label>Address / Street (line 1)</label>
 <input id="address1" name="address1" style="width:100%; max-width:600px;"><br></td></tr>
 <tr><td><label>Address / Street (line 2)</label>
@@ -434,7 +433,7 @@ padding-bottom:0px;
  <option value="late : student">student $200.00 USD (late)</option>
 </select> <br></td></tr>
 <tr><td><input type="hidden" name="pay_method" value="Payment methods">Payment methods</td></tr><tr><td><select name="pay_methods_select" id="pay_methods" >
- <option value="0">Paypal</option>
+ <option value="0">Paypal (Credit card is available)</option>
  <option value="1">Bank transfer</option>
 </select> </td></tr>
 </table>
@@ -448,7 +447,6 @@ padding-bottom:0px;
 <input id="bank_last_name" name ="last_name" type="hidden">
 <input id="bank_institution1" name="institution1" type="hidden">
 <input id="bank_institution2" name="institution2" type="hidden">
-<input id="bank_institution3" name="institution3" type="hidden">
 <input id="bank_address1" name="address1" type="hidden">
 <input id="bank_address2" name="address2" type="hidden">
 <input id="bank_email" name="email" type="hidden">
@@ -476,7 +474,6 @@ $(document).ready(function(){
 		last_name = $("#last_name").val()
 		institution1 = $("#institution1").val()
 		institution2 = $("#institution2").val()
-		institution3 = $("#institution3").val()
 		email = $("#email").val()
 		country = $("#country").val()
 		presentation_type = $("#presentation_type").val()
@@ -511,7 +508,6 @@ $(document).ready(function(){
 		custom.last_name = last_name
 		custom.institution1 = institution1
 		custom.institution2 = institution2
-		custom.institution3 = institution3
 		custom.email = email
 		custom.country = country
 		custom.presentation_type = presentation_type
@@ -532,7 +528,7 @@ $(document).ready(function(){
 			$("#custom").val(JSON.stringify(custom))
 			if ($("#custom").val() != ""){
 				console.log(custom)
-				//$("#paypal_form").submit();
+				$("#paypal_form").submit();
 				$("#submit_btn").attr("disabled","disabled")
 			}
 		} else if ($("#pay_methods").val() == "1") {
@@ -561,7 +557,6 @@ $(document).ready(function(){
 			$("#bank_last_name").val(last_name)
 			$("#bank_institution1").val(institution1)
 			$("#bank_institution2").val(institution2)
-			$("#bank_institution3").val(institution3)
 			$("#bank_email").val(email)
 			$("#bank_country").val(country)
 			$("#bank_presentation_type").val(presentation_type)
@@ -587,7 +582,7 @@ $(document).ready(function(){
 		$("#accompany_box").append( "" +
 		"<tr style=' border-top: 1px solid black'><td style=' padding-bottom:10px;'>" +  
 		"Accompanying person " + accompany_count +"<br>" + 
-		"Gender title: <input class='gender_title'><br>" + 
+		"Gender title: <select class='gender_title'><option value='mr'>Mr.</option><option value='ms'>Ms.</option></select><br>" + 
 		"First name: <input class='first_name'><br>" + 
 		"Family name: <input class='family_name'>" + 
 		"</td></tr>" )
@@ -597,7 +592,7 @@ $(document).ready(function(){
 		$("#accompany_box").append( "" +
 		"<tr style='border-top: 1px solid black'><td style=' padding-bottom:10px;'>" +  
 		"Accompanying person " + accompany_count +"<br>" + 
-		"Gender title: <input class='gender_title'><br>" + 
+		"Gender title: <select class='gender_title'><option value='mr'>Mr.</option><option value='ms'>Ms.</option></select><br>" + 
 		"First name: <input class='first_name'><br>" + 
 		"Family name: <input class='family_name'>" + 
 		"</td></tr>" )
@@ -608,6 +603,7 @@ $(document).ready(function(){
 <hr>
 		<h1 class="the_title">Account for Bank Transfer (Recommended for Korean participants)</h1>
 <p style="font-size:18px">
+※ ISOTT member (490,000 KRW), non-member (590,000 KRW), accompanying person (220,000 KRW), student (160,000 KRW)<br><br>
 1. Swift code: NACF KRSE XXX<br>
 2. Bank name: Nonghyup bank<br>
 3. Bank address: 109 dong, Seoul National University, 1 Gwanak-ro,

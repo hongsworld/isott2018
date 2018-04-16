@@ -10,8 +10,7 @@ class HomeController < ApplicationController
 		r.last_name = params[:last_name]
 		r.institution1 = params[:institution1]
 		r.institution2 = params[:institution2]
-		r.institution3 = params[:institution3]
-		r.institution = r.institution1 + "/" + r.institution2 + "/" + r.institution3
+		r.institution = r.institution1 + "/" + r.institution2 
 		r.email = params[:email]
 		r.title = params[:title]
 		r.academic_title = params[:academic_title]
@@ -69,7 +68,7 @@ class HomeController < ApplicationController
 		require 'gmail'
 		gmail = Gmail.connect('isott2018', 'tjdnfeotndmleo')
 		custom = JSON.parse(JSON.parse(Registration.last.content)["custom"])
-		custom["institution"] = custom["institution1"] + "/" +custom["institution2"] + "/" +custom["institution3"]
+		custom["institution"] = custom["institution1"] + "/" +custom["institution2"] 
 		
 		gmail.deliver do 
 			to custom["email"]
